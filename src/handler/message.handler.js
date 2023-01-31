@@ -1,9 +1,9 @@
+//import { User, Grup, Bot } from "../database/schema/index.js";
 import { Fake } from "../helper/index.js";
 import { Parser } from "./index.js";
 import { readdirSync } from "fs";
 import { join } from "path";
 import { format } from "util";
-
 let rootPlugin = join("src", "plugins");
 const foldersPlugin = readdirSync(rootPlugin, { withFileTypes: true }).filter(v => v.isDirectory());
 export class Message{
@@ -32,8 +32,9 @@ export class Message{
 					}
 					if (plugin.custom && typeof plugin.custom === "function") {
 						if (!plugin.prefix) continue;
-						let query = this.Mek?.text.slice(plugin.prefix.length + 1)
-						if (this.Mek?.text.startsWith(plugin.prefix)) plugin.custom(query)
+						let tek = this.Mek?.text
+						let query = tek.slice((plugin.prefix.length + 1))
+						if (tek.startsWith(plugin.prefix)) plugin.custom(query)
 					}
 				} catch(e) {
 					this.conn.Func.sendteks(this.conn.config.developer[0] + "@s.whatsapp.net", 

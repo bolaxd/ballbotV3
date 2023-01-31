@@ -1,9 +1,9 @@
 process.on("uncaughtException", console.error);
 import MakeWASocket, { useMultiFileAuthState } from "baileys";
 import { Simple, Message, Connection } from "./handler/index.js";
+import ConfigConnection, { LOG } from "./config/connection.config.js";
 import { readFileSync, readdirSync } from "fs";
 import { join } from "path";
-import ConfigConnection, { LOG } from "./config/connection.config.js";
 import "./config/cache.config.js";
 import * as Logger from "./config/logger.config.js";
 

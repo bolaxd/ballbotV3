@@ -9,7 +9,7 @@ import Start from "./src/index.js";
 const start = new Start();
 
 function serverUptime(options = {}) {
-	let port = options.port || 8080;
+	let port = options.port ?? 8080;
 	let customURL = start.config.router;
 	let customResponse = start.config.message.toString();
 	const request = async (req, res) => {
