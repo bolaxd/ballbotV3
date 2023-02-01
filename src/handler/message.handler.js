@@ -21,7 +21,7 @@ export class Message{
 			for await (let file of files) {
 				try {
 					if (!this.Mek.isDev && this.conn.developer) continue;
-					let path = this.conn.developer ? "../" + join("plugins", name, file) +  "?version=" + Date.now() : "../" + join("plugins", name, file);
+					let path = this.conn.developer ? join("..", "plugins", name, file) +  "?version=" + Date.now() : join("..", "plugins", name, file);
 					let imporr = await import(path);
 					if (!imporr.default) continue;
 					let plugin = new imporr.default(this.conn, this.Mek);
@@ -33,7 +33,7 @@ export class Message{
 					if (plugin.custom && typeof plugin.custom === "function") {
 						if (!plugin.prefix) continue;
 						let tek = this.Mek?.text
-						let query = tek.slice((plugin.prefix.length + 1))
+						let query = tek.slice((plugin.prefix.length))
 						if (tek.startsWith(plugin.prefix)) plugin.custom(query)
 					}
 				} catch(e) {

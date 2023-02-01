@@ -3,7 +3,7 @@ import { format } from 'util'
 
 class Main {
 	constructor({Func, Logger, config}, Mek) {
-		this.prefix = "$"; // Only Regex
+		this.prefix = "$";
 		this.category = "owner"
 		this.mainten = "false"
 		this.custom = async (query) => {

@@ -20,13 +20,13 @@ export default class Start{
 		this.store?.bind(Conn.ev);
 		Conn.Func = new Simple(Conn, MakeWASocket);
 		Conn.config = this.config;
-		Conn.Logger = Logger
-		Conn.developer = false
+		Conn.Logger = Logger;
+		Conn.developer = false;
 		Conn.ev.on("connection.update", async (UPDATE) =>
 			new Connection(UPDATE, MakeWASocket).status(Conn, Start)
 		);
 		Conn.ev.on("messages.upsert", async (UPDATE) => {
-			if (UPDATE.messages[0].key.fromMe) return
+			if (UPDATE.messages[0].key.fromMe) return;
 			await new Message(UPDATE.messages[0], Conn).received();
 		});
 		Conn.ev.on("creds.update", saveCreds);

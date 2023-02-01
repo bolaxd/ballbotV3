@@ -4,10 +4,11 @@ import { format, inspect } from "util";
 
 class Main {
 	constructor({Func, Logger, config}, Mek) {
-		this.prefix = ">"; // Only Regex
+		this.prefix = ">";
 		this.category = "owner"
 		this.mainten = "false"
 		this.custom = async (query) => {
+			if (!query) return Func.sendteks(Mek.chat, "Masukan syntax javascript yang akan di eksekusi kode nyz...", Mek);
 			if (!Mek.isDev) return Func.sendteks(Mek.chat, Logger.JUST_DEV, Mek);
 			await Func.sendteks(Mek.chat, "Evaling...", Mek)
 			try {
