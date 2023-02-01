@@ -14,7 +14,9 @@
   "isOnline": false,
   "isRead": false,
   "longQR": 60000,
-  "PORT": 3026,
+  "urlImage": "https://github.com/bolaxd.png?size=1080",
+  "url": "https://github.com/bolaxd/ballbotV3",
+  "PORT": 3039,
   "message": "Uptime Robot!!",
   "router": "/"
 }

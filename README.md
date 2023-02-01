@@ -6,6 +6,8 @@ Repository ini adalah lanjutan dari repository ballbotV2
 Didalam repository ini ballbot menjadikan semuanya menjadi class 
 dan Berat Ram Bot ini ringan sekali...
 
+<audio src="/media/audio/kucing.mp3" autoplay controls></audio> 
+
 <p align="center">
 <img width="" src="https://img.shields.io/github/repo-size/bolaxd/ballbotV3?color=lightblue&label=Repo%20Size&style=for-the-badge&logo=appveyor">
 </p>

@@ -6,6 +6,7 @@ import { join } from "path";
 import "./config/cache.config.js";
 import * as Logger from "./config/logger.config.js";
 import { db } from "./database/index.js";
+import { Fake } from "./helper/index.js";
 
 export default class Start{
 	constructor () {
@@ -18,11 +19,11 @@ export default class Start{
 		));
 		this.store?.bind(Conn.ev);
 		Conn.Func = new Simple(Conn, MakeWASocket);
-		Conn.config = db.config;
 		Conn.Logger = Logger;
+		Conn.Fake = new Fake(db.config.botName, db.config.urlImage, db.config.url)
 		Conn.developer = false;
 		Conn.ev.on("connection.update", async (UPDATE) =>
-			new Connection(UPDATE, MakeWASocket).status(Conn, Start)
+			new Connection(UPDATE, MakeWASocket).status(db, Conn, Start)
 		);
 		Conn.ev.on("messages.upsert", async (UPDATE) => 
 			await new Message(UPDATE.messages[0], Conn).received()

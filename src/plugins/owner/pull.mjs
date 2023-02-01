@@ -2,7 +2,7 @@ import { format } from "util";
 import { exec } from 'child_process';
 
 class Main {
-	constructor({ Func, Logger, config}, Mek) {
+	constructor(db, { Func, Logger, Mek}) {
 		this.command = ["pull"]
 		this.category = "owner"
 		this.mainten = "false"

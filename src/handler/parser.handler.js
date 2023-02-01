@@ -1,5 +1,6 @@
 import baileys from "baileys";
 const { getContentType, downloadContentFromMessage } = baileys;
+import { db } from "../database/index.js";
 
 export class Parser {
 	constructor(Conn, U) {
@@ -11,10 +12,8 @@ export class Parser {
 		this.message = U.message;
 		this.dlMessage = async function(mess) {
 			try {
-				let mime = (mess.msg || mess).mimetype || '';
-				let messageType = mess.mtype ? mess.mtype.replace(/Message/gi, '') : mime.split('/')[0];
+				let mime = (mess.msg || mess).mimetype || '', messageType = mess.mtype ? mess.mtype.replace(/Message/gi, '') : mime.split('/')[0], buffer = Buffer.from([]);
 				const stream = await downloadContentFromMessage(mess, messageType);
-				let buffer = Buffer.from([]);
 				for await (const chunk of stream) buffer = Buffer.concat([buffer, chunk]);
 				return buffer
 			} catch (e) { console.log(e) };
@@ -28,9 +27,9 @@ export class Parser {
 			this.isPC = this.chat.endsWith("@s.whatsapp.net");
 			this.sender = Conn.Func.createJid(this.fromMe && Conn.user?.id || U.key.participant || this.chat || "");
 			this.isBot = (this.id.startsWith("BAE5") || this.id.startsWith("30EB")) && this.id.length < 31
-			this.isDev = Conn.config?.developer.map(val => val + "@s.whatsapp.net").includes(this.sender);
-			this.isOwn = this.isDev && Conn.config?.owner.map(val => val + "@s.whatsapp.net").includes(this.sender);
-			this.isMod = this.isDev && this.isOwn && Conn.config?.moderator.map(val => val + "@s.whatsapp.net").includes(this.sender);
+			this.isDev = db.config?.developer.map(val => val + "@s.whatsapp.net").includes(this.sender);
+			this.isOwn = this.isDev && db.config?.owner.map(val => val + "@s.whatsapp.net").includes(this.sender);
+			this.isMod = this.isDev && this.isOwn && db.config?.moderator.map(val => val + "@s.whatsapp.net").includes(this.sender);
 		}
 		if (U.message) {
 			if (U.message?.messageContextInfo) delete U.message.messageContextInfo;

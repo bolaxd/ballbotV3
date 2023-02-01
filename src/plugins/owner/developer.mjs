@@ -1,10 +1,9 @@
 class Main {
-	constructor(Conn, Mek) {
+	constructor({ config }, {Mek, Func, Logger, Fake}) {
 		this.command = ["maintenance", "mt"]
 		this.category = "owner"
 		this.mainten = "false"
 		this.mid = async () => {
-			let {Func, Logger, config} = Conn;
 			if (!Mek.isDev) return Func.sendteks(Mek.chat, Logger.JUST_DEV, Mek);
 			if (Mek.args[0] == "aktif") {
 				if (Conn.developer) return Func.sendteks(Mek.chat, Logger.SUDAH_AKTIF_MAIN, Mek)
@@ -19,7 +18,7 @@ class Main {
 										: `Mode Maintenance sekarang aktif, apakah kamu ingin Mematikan nya?\nKonfirmasi button dibawah`
 				let but = !Conn.developer ? [["Aktifkan Mode", `.${Mek.command} aktif`]]
 										: [["Konfirmasi", `.${Mek.command} mati`]]
-				Func.sendbutton(Mek.chat, teks, config.botName, but, Mek) 
+				Func.sendbutton(Mek.chat, teks, config.botName, but, Fake.fakeStatus("Mode Developer...", "")) 
 			}
 		}
 	}
