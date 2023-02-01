@@ -14,7 +14,7 @@
   "isOnline": false,
   "isRead": false,
   "longQR": 60000,
-  "PORT": 3025,
+  "PORT": 3026,
   "message": "Uptime Robot!!",
   "router": "/"
 }
