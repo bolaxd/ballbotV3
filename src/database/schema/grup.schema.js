@@ -6,6 +6,7 @@ export class Group{
 	}
 	Expose() {
 		if (!this.Mek) return;
+		if (!this.Mek.isGc) return;
 		let c = this.Mek.chat, chat = db.grup[c];
 		if (typeof chat !== "object") db.grup[c] = {};
 		if (chat) {
