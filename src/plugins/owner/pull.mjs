@@ -8,6 +8,7 @@ class Main {
 		this.mainten = "false"
 		this.mid = async function () {
 			if (!Mek.isDev) return Func.sendteks(Mek.chat, Logger.JUST_DEV, Mek);
+			await Func.sendteks(Mek.chat, "Wait for updating server...", Mek);
 			await exec('git pull', (stderr, stdout) => {
 				if (stderr) return Func.sendteks(Mek.chat, format(stderr), Mek);
 				if (stdout) return Func.sendteks(Mek.chat, format(stdout), Mek);
