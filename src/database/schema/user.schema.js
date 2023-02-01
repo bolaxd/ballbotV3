@@ -7,7 +7,7 @@ export class User{
 	Expose() {
 		if (!this.Mek) return;
 		let s = this.Mek.sender, user = db.user[s];
-		if (typeof user !== "object") db.user[s] = {};
+		if (!user) db.user[s] = {};
 		if (user) {
 			// TODO: Disini adalah nilai default dari database sebelum di muat
 			if (!("afk" in user)) db.user[s].afk = -1;

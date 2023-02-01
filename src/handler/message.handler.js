@@ -4,8 +4,10 @@ import { Parser } from "./index.js";
 import { readdirSync } from "fs";
 import { join } from "path";
 import { format } from "util";
+
 let rootPlugin = join("src", "plugins");
 const foldersPlugin = readdirSync(rootPlugin, { withFileTypes: true }).filter(v => v.isDirectory());
+
 export class Message{
 	constructor(UPDATE, Conn){
 		this.UPDATE = UPDATE;

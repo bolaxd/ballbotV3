@@ -24,10 +24,9 @@ export default class Start{
 		Conn.ev.on("connection.update", async (UPDATE) =>
 			new Connection(UPDATE, MakeWASocket).status(Conn, Start)
 		);
-		Conn.ev.on("messages.upsert", async (UPDATE) => {
-			if (UPDATE.messages[0].key.fromMe) return;
-			await new Message(UPDATE.messages[0], Conn).received();
-		});
+		Conn.ev.on("messages.upsert", async (UPDATE) => 
+			await new Message(UPDATE.messages[0], Conn).received()
+		);
 		Conn.ev.on("creds.update", saveCreds);
 	}
 }
