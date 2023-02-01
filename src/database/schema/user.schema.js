@@ -1,19 +1,18 @@
 import { db } from "../index.js";
 
-export class Schema{
+export class User{
 	constructor(Mek) {
 		this.Mek = Mek;
 	}
-	User() {
+	Expose() {
 		if (!this.Mek) return;
-		let sender = this.Mek.sender;
-		let user = db[sender];
-		if (typeof user !== "object") db[sender] = {};
+		let s = this.Mek.sender, user = db.user[s];
+		if (typeof user !== "object") db.user[s] = {};
 		if (user) {
 			// TODO: Disini adalah nilai default dari database sebelum di muat
-			if (!("afk" in user)) db[sender].afk = -1;
-			if (!("rafk" in user)) db[sender].rafk = "";
-		} else db[sender] = {
+			if (!("afk" in user)) db.user[s].afk = -1;
+			if (!("rafk" in user)) db.user[s].rafk = "";
+		} else db.user[s] = {
 			afk: -1,
 			rafk: "",
 		};

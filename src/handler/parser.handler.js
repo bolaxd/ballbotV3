@@ -27,7 +27,7 @@ export class Parser {
 			this.isGroup = this.chat.endsWith("@g.us");
 			this.isPC = this.chat.endsWith("@s.whatsapp.net");
 			this.sender = Conn.Func.createJid(this.fromMe && Conn.user?.id || U.key.participant || this.chat || "");
-			this.isBot = this.id.startsWith("BAE5") || this.id.startsWith("30EB") && this.id.length < 32
+			this.isBot = (this.id.startsWith("BAE5") || this.id.startsWith("30EB")) && this.id.length < 32
 			this.isDev = Conn.config?.developer.map(val => val + "@s.whatsapp.net").includes(this.sender);
 			this.isOwn = this.isDev && Conn.config?.owner.map(val => val + "@s.whatsapp.net").includes(this.sender);
 			this.isMod = this.isDev && this.isOwn && Conn.config?.moderator.map(val => val + "@s.whatsapp.net").includes(this.sender);
@@ -53,7 +53,7 @@ export class Parser {
 				this.quoted.mtype = type
 				this.quoted.id = this.msg?.contextInfo?.stanzaId
 				this.quoted.chat = this.msg?.contextInfo?.remoteJid || this.chat
-				this.quoted.isBot = this.quoted.id ? this.quoted.id.startsWith('BAE5') && this.quoted.id.length === 16 : false
+				this.quoted.isBot = this.quoted.id ? (this.quoted.id.startsWith("BAE5") || this.quoted.id.startsWith("30EB")) && this.quoted.id.length < 32 : false
 				this.quoted.sender = Conn.Func.createJid(this.msg.contextInfo?.participant)
 				this.quoted.fromMe = this.quoted.sender === (Conn.user && Conn.user?.id)
 				this.quoted.text = this.quoted.text || this.quoted.caption || this.quoted.conversation || this.quoted.contentText || this.quoted.selectedDisplayText || this.quoted.title || ''

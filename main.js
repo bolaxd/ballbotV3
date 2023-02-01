@@ -1,7 +1,6 @@
-import "./src/database/index.js";
+import { db } from "./src/database/index.js";
 import { createServer } from "http";
 import { fileURLToPath } from "url";
-import { writeFileSync } from "fs";
 import path from "path";
 import Start from "./src/index.js";
 // import yargs from 'yargs'
@@ -10,8 +9,8 @@ const start = new Start();
 
 function serverUptime(options = {}) {
 	let port = options.port ?? 8080;
-	let customURL = start.config.router;
-	let customResponse = start.config.message.toString();
+	let customURL = db.config.router;
+	let customResponse = db.config.message.toString();
 	const request = async (req, res) => {
 		if (options.debug) console.log(`::debug:: [repl-uptime] => ${req.method.toLowerCase()} ${req.url}`);
 		if (req.url === customURL) {
@@ -24,10 +23,8 @@ function serverUptime(options = {}) {
 		console.log("Maaf PORT error!!!\nTunggu sebentar sedang membangun Port Baru");
 		setTimeout(async () => {
 			await console.clear();
-			let conf = new Start().config
-			conf.PORT += 1
-			await writeFileSync("config.json", JSON.stringify(conf, null, 2))
-			await serverUptime({ port: conf.PORT, debug: true });
+			db.config.PORT += 1
+			await serverUptime({ port: db.config.PORT, debug: true });
 		}, 5000)
 	});
 	server.listen(port, () => {
@@ -36,4 +33,4 @@ function serverUptime(options = {}) {
 		start.bot();
 	});
 }
-serverUptime({ port: start.config.PORT, debug: true });
+serverUptime({ port: db.config.PORT, debug: true });

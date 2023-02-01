@@ -1,4 +1,4 @@
-//import { User, Grup, Bot } from "../database/schema/index.js";
+import { User, Group } from "../database/schema/index.js";
 import { Fake } from "../helper/index.js";
 import { Parser } from "./index.js";
 import { readdirSync } from "fs";
@@ -13,7 +13,9 @@ export class Message{
 		this.Mek = new Parser(Conn, UPDATE);
 	}
 	async received() {
-		if (this.Mek?.fromMe) return
+		new User(this.Mek).Expose()
+		new Group(this.Mek).Expose()
+		if (this.Mek?.isBot) return
 		if (/status@broadcast/.test(this.Mek?.chat)) return
 		console.log(this.Mek);
 		foldersPlugin.map(async ({ name }) => {
@@ -32,9 +34,8 @@ export class Message{
 					}
 					if (plugin.custom && typeof plugin.custom === "function") {
 						if (!plugin.prefix) continue;
-						let tek = this.Mek?.text
-						let query = tek.slice((plugin.prefix.length))
-						if (tek.startsWith(plugin.prefix)) plugin.custom(query)
+						let query = this.Mek?.text?.slice((plugin.prefix.length));
+						if (this.Mek?.text?.startsWith(plugin.prefix)) plugin.custom(query);
 					}
 				} catch(e) {
 					this.conn.Func.sendteks(this.conn.config.developer[0] + "@s.whatsapp.net", 

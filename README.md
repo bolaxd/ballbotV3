@@ -10,7 +10,10 @@ dan Berat Ram Bot ini ringan sekali...
 <img width="" src="https://img.shields.io/github/repo-size/bolaxd/ballbotV3?color=lightblue&label=Repo%20Size&style=for-the-badge&logo=appveyor">
 </p>
 
-> Minimal Star dulu untuk menggunakan Repository ini\nBot ini masih di development [ Jadi agak sabar yahh ]\ntetapi sistem dari bot ini sudah di optimalkan [ Tinggal Fitur ]\nkarena Bot ini sebelumnya dimasukan ke Github dalam Mode private
+> Minimal Star dulu untuk menggunakan Repository ini.
+Bot ini masih di development [ Jadi agak sabar yahh ].
+tetapi sistem dari bot ini sudah di optimalkan [ Tinggal Fitur ].
+karena Bot ini sebelumnya dimasukan ke Github dalam Mode private.
 
 ### How to Install ?
 
@@ -27,6 +30,13 @@ cd ballbotV3
 npm install
 npm test
 ```
+
+### Bagaimana cara mensetting bot pertama kali?
+
+Anda cukup membuka file ```config.json``` pada direktory root folder lalu anda bisa edit seperlu anda disitu
+
+file ```config.json``` tersebut sudah di lengkapi auto save, jadi ketika anda memanggil file tersebut lalu anda menambahkan ```db[key] = value```
+untuk contoh nya anda bisa lihat di beberapa file disana
 
 ### Bagaimana cara menambahkan Fitur?
 
@@ -137,7 +147,7 @@ Nah ini tidak perlu di pikirkan lagi, saya telah membuat nya sebagai object kiri
 ```
 Nah anda bisa menggunakan ```query``` diatas
 
-Jika anda masih pusing dan memiliki Sepaket kepala puyeng?? Anda bisa tanyakan saja di group kami! :v 
+Jika anda masih pusing dan kepala puyeng?? Anda bisa tanyakan saja di group kami! :v 
 
 [![Grup WhatsApp](https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://chat.whatsapp.com/Joejcs0ebWl5Kqn97YEl4z)
 
