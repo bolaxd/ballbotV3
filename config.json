@@ -1,0 +1,29 @@
+{
+  "appName": "ballbotV3",
+  "botName": "ballbot",
+  "githubEmail": "iqbalsheila619@gmail.com",
+  "githubName": "bolaxd",
+  "developer": [
+    "6285728625940",
+    "6287839067186",
+    "6289631008798",
+    "6287734910547"
+  ],
+  "owner": [
+    "6289631008798",
+    "6287734910547"
+  ],
+  "moderator": [],
+  "sessionName": "sessions",
+  "dbName": "db.json",
+  "isOnline": true,
+  "isRead": false,
+  "longQR": 60000,
+  "urlImage": "https://github.com/bolaxd.png?size=1080",
+  "url": "https://github.com/bolaxd/ballbotV3",
+  "PORT": 3203,
+  "message": "Uptime Robot!!",
+  "router": "/",
+  "hit": 256,
+  "maintenance": true
+}
