@@ -2,7 +2,7 @@ import { Metadata } from "../config/cache.config.js";
 
 export class Notification {
 	constructor(Mek, Conn, UPDATE) {
-		this.debug = true; // Jika ini dirubah false maka console tidak akan muncul
+		this.debug = false; // Jika ini dirubah false maka console tidak akan muncul
 		this.log = (text) => this.debug ? console.log(text) : null
 		this.metadata = async () => {
 			let bot = await Conn.Func.createJid(Conn.user.id)

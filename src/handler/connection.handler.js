@@ -10,12 +10,12 @@ export class Connection {
 	status ({ config }, {Func, Logger, Fake}, Start) {
 		if (this.connection == "close"){
 			if (this.statusCode === this.loggedOut)
-			new Start().bot(), console.log(Logger.RESTART_KONEKSI);
+			new Start().bot(), console.log("Restarting...");
 			else new Start().bot();
 		} else if (this.connection == "connecting")
-			console.log(Logger.AWAIT_KONEKSI);
+			console.log("Connecting...");
 		else if (this.connection == "open")
-			console.warn(Logger.TERKONEK)
+			console.warn("Connected...")
 			// Func.sendteks(config.developer[1] + "@s.whatsapp.net", Logger.TERKONEK, Fake.fakeStatus("Notification...", ''));
 	}
 }

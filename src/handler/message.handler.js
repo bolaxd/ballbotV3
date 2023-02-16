@@ -7,6 +7,7 @@ import { Global } from "../helper/index.js";
 import { Parser, Notification } from "./index.js";
 import { Metadata } from "../config/cache.config.js";
 import { User, Group } from "../database/schema/index.js";
+import Console from "../print.js";
 
 export class Message{
 	constructor(UPDATE, Conn, MakeWASocket){
@@ -23,7 +24,8 @@ export class Message{
 		this.notif.metadata()
 		if (this.Mek?.isBot) return
 		if (/status@broadcast/.test(this.Mek?.chat)) return
-		console.log(this.Mek);
+		await new Console(this.Mek, this.UPDATE, (await this.notif.getMeta())).run();
+		// console.log(this.Mek);
 		this.foldersPlugin.map(async ({ name }) => {
 			let files = await readdirSync(join(this.rootPlugin, name));
 			for (let file of files) {
@@ -32,7 +34,7 @@ export class Message{
 						if (this.Mek.command) this.conn.Func.sendteks(this.Mek.chat, this.conn.Logger.MAINTENANCE, this.Mek)
 						continue;
 					}
-					let path = db.config.maintenace ? join("..", "plugins", name, file) +  "?version=" + Date.now() : join("..", "plugins", name, file);
+					let path = db.config.maintenace ? join("..", "plugins", name, file) +  "?update=" + Date.now() : join("..", "plugins", name, file);
 					let Extra = {}
 					Extra.Mek = this.Mek
 					Extra.Conn = this.conn

@@ -1,6 +1,4 @@
-export const RESTART_KONEKSI = "sedang Merestart Ulang Koneksi"
-export const AWAIT_KONEKSI = "Menunggu Terkait ke koneksi server whatsapp web..."
-export const TERKONEK = "Server telah tersambung kekoneksi whatsapp web..."
+
 export const JUST_DEV = "Perintah bot ini khusus developer bot"
 export const JUST_OWNER = "Perintah bot ini hanya bisa di akses oleh owner"
 export const JUST_ADMIN = "Perintah bot ini hanya ketika menjadi admin group"
@@ -11,3 +9,5 @@ export const SUDAH_MATI_MAIN = "Mode maintenance sebelum nya sudah mati!"
 export const MODE_MAIN = "```Maaf kak, sekarang sedang mode maintenance!\nDeveloper sedang mengadakan perubahanbot besar```"
 export const QUERY_PUSH = "```Masukan Keterangan untuk mengupdate ke github...```"
 export const MAINTENANCE = "```Mode maintenance telah diaktifkan...\nSemua fitur sekarang telah dibekukan oleh owner```"
+export const CONVERT_MEDIA = "```Reply stiker yang ingin dikonvert menjadi media image / video```"
+export const CONVERT_STIKER = "```Reply Gambar atau Video yang ingin di jadikan stiker dengan command tadi\nAtau Kirim Video / gambar dengan caption command tadi```"
