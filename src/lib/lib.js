@@ -1,9 +1,19 @@
 import { exec } from "child_process";
-import { writeFileSync, readFileSync, unlinkSync } from "fs";
+import { writeFileSync, readFileSync, unlinkSync, createReadStream } from "fs";
 import { join } from "path";
 import { fileTypeFromBuffer } from "file-type";
 import ff from "fluent-ffmpeg";
-
+ let got, formData
+try {
+	got = (await import('got')).default
+} catch (e) {
+	console.log("Got not installed!, please install now with command: npm install got");
+}
+try {
+	formData = (await import("form-data")).default
+} catch (e) {
+	console.log("form-data not installed!, please install now with command: npm install form-data");
+}
 export class Library {
 	constructor() {
 		this.png = join("tmp", "up" + ".png")
@@ -89,5 +99,21 @@ export class Library {
 				});
 			}
 		})
+	}
+	toUrl(buffer) {
+		return new Promise(async (resolve, reject) => {
+			await writeFileSync(this.png, buffer);
+			let BASE_URL = 'https://telegra.ph', form = new formData();
+				form.append("file", createReadStream(this.png))
+				await got.post(BASE_URL + "/upload", {
+					headers: { ...form.getHeaders() },
+					body: form
+				}).json()
+				.then(v => {
+					unlinkSync(this.png);
+					resolve(BASE_URL + v[0].src);
+				})
+				.catch(e => reject(e));
+		});
 	}
 }

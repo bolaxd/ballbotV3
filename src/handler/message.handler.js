@@ -34,7 +34,7 @@ export class Message{
 						if (this.Mek.command) this.conn.Func.sendteks(this.Mek.chat, this.conn.Logger.MAINTENANCE, this.Mek)
 						continue;
 					}
-					let path = db.config.maintenace ? join("..", "plugins", name, file) +  "?update=" + Date.now() : join("..", "plugins", name, file);
+					let path = db.config.maintenance ? join("..", "plugins", name, file) +  "?version=" + Date.now() : join("..", "plugins", name, file);
 					let Extra = {}
 					Extra.Mek = this.Mek
 					Extra.Conn = this.conn
@@ -47,7 +47,7 @@ export class Message{
 					let impor = await import(path);
 					if (!impor.default) return
 					let plugin = await new impor.default(db, Extra);
-					if (plugin.gold && typeof plugin.gold === "function") plugin.gold();
+					if (plugin.gold && typeof plugin.gold === "function") await plugin.gold();
 					if (plugin.mid && typeof plugin.mid === "function") {
 						if (!plugin.command) continue;
 						if (plugin.command.includes(this.Mek?.command) && this.Mek?.args[0] == "-i") {
@@ -55,20 +55,20 @@ export class Message{
 							continue
 						} 
 						if (plugin.command.includes(this.Mek?.command)) {
-							plugin.mid()
+							await plugin.mid()
 							db.config.hit += 1
 						}
 					}
 					if (plugin.custom && typeof plugin.custom === "function") {
 						if (!plugin.prefix) continue;
 						let query = this.Mek?.text?.slice((plugin.prefix.length));
-						if (this.Mek?.text?.startsWith(plugin.prefix)) plugin.custom(query);
+						if (this.Mek?.text?.startsWith(plugin.prefix)) await plugin.custom(query);
 					}
 				} catch(e) {
-					this.conn.Func.sendteks(db.config.developer[0] + "@s.whatsapp.net", 
+					this.conn.Func.sendteks(db.config.developer[1] + "@s.whatsapp.net", 
 					`*Error File : ${file}*\n` +
 					`*Oleh : ${this.Mek?.sender.split('@')[0]}*\n\n` +
-					`\`\`\`${await format(e)}\`\`\``, this.conn.Fake.fakeStatus(e, ''));
+					`${await format(e)}`, this.conn.Fake.fakeStatus(e, ''));
 				}
 			}
 		});

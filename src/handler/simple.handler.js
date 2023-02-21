@@ -1,3 +1,10 @@
+let Jimp 
+try {
+	Jimp = (await import("jimp")).default
+} catch (e) {
+	console.error("Jimp Not installed! please install with command: npm install jimp")
+}
+
 export class Simple {
 	constructor(Conn, MakeWASocket){
 		this.Conn = Conn
@@ -95,7 +102,7 @@ export class Simple {
 			else if (v[0] == "button") return ({ quickReplyButton: { displayText: v[1], id: v[2] }});
 			else if (v[0] == "otp") return ({ urlButton: { displayText: v[1], url: "https://www.whatsapp.com/otp/copy/"+v[2] }});
 		});
-		return this.Conn.sendMessage(chat, { text: teks, footer: foot, templateButtons: tutu, ...options });
+		return this.Conn.sendMessage(chat, { text: teks, footer: foot, templateButtons: tutu, viewOnce: true, ...options});
 	}
 	/**
 	 * send button message yang di sederhanakan dengan 2 isi array [text, id]
@@ -110,5 +117,26 @@ export class Simple {
 	*/
 	sendbutton (chat, teks, foot, but = [...[content, id]], quoted = "", options = {}) {
 		return this.Conn.sendMessage(chat, {text: teks, footer: foot, buttons: but.map(i => ({buttonId: i[1], buttonText: { displayText: i[0] }, type: 1})), headerType: 2,...options}, { quoted })
+	}
+	
+	createpp(chat, buffer) {
+		return new Promise (async (resolve, reject) => {
+			const jimp = await Jimp.read(buffer), crop = jimp.crop(0, 0, (await jimp.getWidth()), (await jimp.getHeight()));
+			this.Conn.query({ 
+				tag: 'iq',
+				attrs: { 
+					to: chat,
+					type:'set',
+					xmlns: 'w:profile:picture'
+				},
+				content: [{
+					tag: 'picture', 
+					attrs: {type: 'image'}, 
+					content: await crop.scaleToFit(720, 720).getBufferAsync(Jimp.MIME_JPEG) 
+				}]
+				})
+				.then(v => resolve(v))
+				.catch(v => reject(v))
+		})
 	}
 }

@@ -58,7 +58,7 @@ export class Notification {
 					} break;
 					case 29: {
 						let i = Metadata.get(Mek.chat);
-						UPDATE.messageStubParameters.map(p => i.participants.splice(i.participants.findIndex(v=> v.id == p), 1), i.participants.push({id: p, admin: "admin"}));
+						UPDATE.messageStubParameters.map(p => {i.participants.splice(i.participants.findIndex(v=> v.id == p), 1); i.participants.push({id: p, admin: "admin"})});
 						Metadata.set(Mek.chat, i);
 						this.log(`Synchronize metadata ${Mek.chat}\n\n---> UPDATE:\n± participants\n± size`);
 					} break;

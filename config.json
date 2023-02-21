@@ -11,7 +11,8 @@
   ],
   "owner": [
     "6289631008798",
-    "6287734910547"
+    "6287734910547",
+    "6285728625940"
   ],
   "moderator": [],
   "sessionName": "sessions",
@@ -19,11 +20,11 @@
   "isOnline": true,
   "isRead": false,
   "longQR": 60000,
-  "urlImage": "https://github.com/bolaxd.png?size=1080",
+  "urlImage": "https://github.com/bolaxd.png?size=200",
   "url": "https://github.com/bolaxd/ballbotV3",
-  "PORT": 3218,
+  "PORT": 3324,
   "message": "Uptime Robot!!",
   "router": "/",
-  "hit": 284,
-  "maintenance": true
+  "hit": 580,
+  "maintenance": false
 }

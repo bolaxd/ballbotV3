@@ -21,11 +21,10 @@ export default class Start{
 		// ADD Your Cache Connection in here
 		Conn.Func = new Simple(Conn, MakeWASocket);
 		Conn.Logger = Logger;
-		Conn.menfess = Conn.menfess ?? {}
 		Conn.Fake = new Fake(db.config.botName, db.config.urlImage, db.config.url);
 		// End Your cache Connection 
 		Conn.ev.on("connection.update", async (UPDATE) =>
-			new Connection(UPDATE, MakeWASocket).status(db, Conn, Start)
+			new Connection(UPDATE, MakeWASocket).status(db, Start)
 		);
 		Conn.ev.on("messages.upsert", async (UPDATE) => 
 			await new Message(UPDATE.messages[0], Conn, MakeWASocket).received()

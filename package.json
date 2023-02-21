@@ -22,10 +22,10 @@
   "homepage": "https://github.com/bolaxd/ballbotV3#readme",
   "dependencies": {
     "@adiwajshing/keyed-db": "^0.2.4",
+    "@bolaxd/awokwok": "^2.0.0",
     "baileys": "^6.0.7",
     "file-type": "^18.2.0",
     "fluent-ffmpeg": "^2.1.2",
-    "lolcatjs": "^2.4.1",
     "qrcode-terminal": "^0.12.0"
   },
   "engines": {
@@ -34,6 +34,8 @@
   "enginesStrict": true,
   "optionalDependencies": {
     "cheerio": "^1.0.0-rc.12",
-    "got": "^12.5.3"
+    "form-data": "^4.0.0",
+    "got": "^12.5.3",
+    "jimp": "^0.16.1"
   }
 }

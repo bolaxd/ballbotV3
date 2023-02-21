@@ -4,7 +4,7 @@ import { format, inspect } from "util";
 import fs from "fs";
 
 class Main {
-	constructor(db, {Mek, Func, Logger, Metadata, Fake, Global}) {
+	constructor(db, {Mek, Func, Logger, Metadata, Fake, Global, Lib}) {
 		this.prefix = "=>";
 		this.category = "owner"
 		this.mainten = "false"
