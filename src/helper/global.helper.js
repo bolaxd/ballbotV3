@@ -1,7 +1,7 @@
 import got from "got"
 import { color } from "@bolaxd/awokwok"
 
-export class Global {
+export default class Global {
 	static async getBuffer(url) {
 		return await got(url).buffer();
 	}

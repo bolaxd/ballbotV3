@@ -1,6 +1,6 @@
-import { Metadata } from "../config/cache.config.js";
+import Metadata from "../config/cache.config.js";
 
-export class Notification {
+export default class Notification {
 	constructor(Mek, Conn, UPDATE) {
 		this.debug = false; // Jika ini dirubah false maka console tidak akan muncul
 		this.log = (text) => this.debug ? console.log(text) : null
@@ -40,7 +40,10 @@ export class Notification {
 					case 27:
 					case 71: {
 						let i = Metadata.get(Mek.chat);
-						UPDATE.messageStubParameters.map(o => i.participants.push({id: o, admin: null}), i.size += 1);
+						UPDATE.messageStubParameters.map(o => {
+							i.participants.push({id: o, admin: null});
+							i.size += 1
+						});
 						Metadata.set(Mek.chat, i);
 						this.log(`Synchronize metadata ${Mek.chat}\n\n---> UPDATE:\n± participants\n± size`);
 					} break;
@@ -52,7 +55,10 @@ export class Notification {
 							return !0
 						}
 						let i = Metadata.get(Mek.chat);
-						UPDATE.messageStubParameters.map(p => i.size -= 1, i.participants.splice(i.participants.findIndex(v=> v.id == p), 1));
+						UPDATE.messageStubParameters.map(p => {
+							i.size -= 1;
+							i.participants.splice(i.participants.findIndex(v=> v.id == p), 1)
+						});
 						Metadata.set(Mek.chat, i);
 						this.log(`Synchronize metadata ${Mek.chat}\n\n---> UPDATE:\n± participants\n± size`);
 					} break;
@@ -64,7 +70,7 @@ export class Notification {
 					} break;
 					case 30: {
 						let i = Metadata.get(Mek.chat);
-						UPDATE.messageStubParameters.map(p => i.participants.splice(i.participants.findIndex(v=> v.id == p), 1), i.participants.push({id: p, admin: null}));
+						UPDATE.messageStubParameters.map(p => {i.participants.splice(i.participants.findIndex(v=> v.id == p), 1); i.participants.push({id: p, admin: null})});
 						Metadata.set(Mek.chat, i);
 						this.log(`Synchronize metadata ${Mek.chat}\n\n---> UPDATE:\n± participants\n± size`);
 					} break;

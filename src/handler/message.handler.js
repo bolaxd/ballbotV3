@@ -1,30 +1,37 @@
-import { join } from "path";
-import { format } from "util";
-import { readdirSync } from "fs";
-import { Library } from "../lib/lib.js";
 import { db } from "../database/index.js";
-import { Global } from "../helper/index.js";
-import { Parser, Notification } from "./index.js";
-import { Metadata } from "../config/cache.config.js";
-import { User, Group } from "../database/schema/index.js";
+import { readdirSync } from "fs";
+import { format } from "util";
+import { join } from "path";
+
+import User from "../database/schema/user.schema.js";
+import Group from "../database/schema/grup.schema.js";
+import Notification from "./notification.handler.js";
+import Global from "../helper/global.helper.js";
+import Metadata from "../config/cache.config.js";
+import Parser from "./parser.handler.js";
+import Library from "../lib/lib.js";
 import Console from "../print.js";
 
-export class Message{
+export default class Message{
 	constructor(UPDATE, Conn, MakeWASocket){
 		this.UPDATE = UPDATE;
 		this.conn = Conn;
 		this.Mek = new Parser(Conn, UPDATE, MakeWASocket);
 		this.notif = new Notification(this.Mek, this.conn, this.UPDATE);
+		this.user = new User(this.Mek)
+		this.group = new Group(this.Mek)
+		this.lib = new Library();
+		this.cl = new Console(this.Mek, this.UPDATE, this.notif.getMeta())
 		this.rootPlugin = join("src", "plugins");
 		this.foldersPlugin = readdirSync(this.rootPlugin, { withFileTypes: true }).filter(v => v.isDirectory())
 	}
 	async received() {
-		new User(this.Mek).Expose();
-		new Group(this.Mek).Expose();
-		this.notif.metadata()
+		this.user.Expose();
+		this.group.Expose();
+		this.notif.metadata();
 		if (this.Mek?.isBot) return
 		if (/status@broadcast/.test(this.Mek?.chat)) return
-		await new Console(this.Mek, this.UPDATE, (await this.notif.getMeta())).run();
+		await this.cl.run();
 		// console.log(this.Mek);
 		this.foldersPlugin.map(async ({ name }) => {
 			let files = await readdirSync(join(this.rootPlugin, name));
@@ -42,7 +49,7 @@ export class Message{
 					Extra.Fake = this.conn.Fake
 					Extra.Metadata = await this.notif.getMeta()
 					Extra.Logger = this.conn.Logger
-					Extra.Lib = new Library()
+					Extra.Lib = this.lib
 					Extra.Global = Global
 					let impor = await import(path);
 					if (!impor.default) return

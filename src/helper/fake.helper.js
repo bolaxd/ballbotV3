@@ -1,4 +1,4 @@
-export class Fake {
+export default class Fake {
 	constructor(content = "", thumbnail = "", source = "") {
 		this.content = content;  /* content from constructor for fake function in bottom*/
 		this.thumbnail = thumbnail;  /* thumbnail url from constructor for fake function in bottom*/

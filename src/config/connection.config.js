@@ -7,7 +7,8 @@ import { db } from "../database/index.js";
  * by Bolaxd github 
  * you cannot edit this [ warning!!! ]
 */
-export const LOG = Pino({ level: "silent" })
+const LOG = Pino({ level: "silent" })
+
 export default class ConnectionConfig {
 	constructor() {
 		let _d = db.config?.isOnline, _c = db.config?.longQR

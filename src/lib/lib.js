@@ -14,7 +14,7 @@ try {
 } catch (e) {
 	console.log("form-data not installed!, please install now with command: npm install form-data");
 }
-export class Library {
+export default class Library {
 	constructor() {
 		this.png = join("tmp", "up" + ".png")
 		this.webp = join("tmp", "ul" + ".webp")

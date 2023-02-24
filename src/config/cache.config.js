@@ -1,6 +1,6 @@
 import { EventEmitter } from "events";
 
-export let Metadata = new Map();
+export default new Map();
 
 /**
  * GW kasih Infinity kenapa?

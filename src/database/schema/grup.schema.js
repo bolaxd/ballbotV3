@@ -1,6 +1,6 @@
 import { db } from "../index.js";
 
-export class Group{
+export default class Group{
 	constructor(Mek) {
 		this.Mek = Mek;
 	}

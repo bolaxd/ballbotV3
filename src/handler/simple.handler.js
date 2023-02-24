@@ -5,7 +5,7 @@ try {
 	console.error("Jimp Not installed! please install with command: npm install jimp")
 }
 
-export class Simple {
+export default class SimpleImplementation {
 	constructor(Conn, MakeWASocket){
 		this.Conn = Conn
 		this.Socket = MakeWASocket

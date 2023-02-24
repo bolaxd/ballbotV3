@@ -22,9 +22,9 @@
   "longQR": 60000,
   "urlImage": "https://github.com/bolaxd.png?size=200",
   "url": "https://github.com/bolaxd/ballbotV3",
-  "PORT": 3324,
+  "PORT": 3340,
   "message": "Uptime Robot!!",
   "router": "/",
-  "hit": 580,
+  "hit": 590,
   "maintenance": false
 }

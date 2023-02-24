@@ -1,11 +1,12 @@
 import { db } from "./src/database/index.js";
+import { color } from "@bolaxd/awokwok";
+import { spawn } from "child_process";
 import { createServer } from "http";
 import { fileURLToPath } from "url";
 import path from "path";
+
+import Global from "./src/helper/global.helper.js";
 import Start from "./src/index.js";
-import { Global } from "./src/helper/index.js";
-import { spawn } from "child_process";
-import { color } from "@bolaxd/awokwok";
 
 const start = new Start();
 

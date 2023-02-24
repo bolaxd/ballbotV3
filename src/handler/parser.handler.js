@@ -1,6 +1,6 @@
 import { db } from "../database/index.js";
 
-export class Parser {
+export default class Parser {
 	constructor(Conn, U, MakeWASocket) {
 		if (!U) return console.log("Invalid Update message baileys");
 		if (!Conn) return console.log("Invalid connection from baileys");

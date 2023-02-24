@@ -1,6 +1,6 @@
 import { db } from "../index.js";
 
-export class User{
+export default class User{
 	constructor(Mek) {
 		this.Mek = Mek;
 	}
